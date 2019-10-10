@@ -30,7 +30,7 @@ pub fn finished(grid: &crate::grid::Grid) -> Cell {
         return grid[0][0];
     }
     if grid[0][2] == grid[1][1] && grid[0][2] == grid[2][0] {
-        return grid[0][0];
+        return grid[0][2];
     }
     Cell::Empty
 }
