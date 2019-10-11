@@ -1,6 +1,6 @@
+mod ai;
 mod game;
 mod grid;
-mod ia;
 mod input;
 mod print;
 
@@ -10,7 +10,10 @@ fn main() {
     while game::finished(&grid.grid).is_none() {
         print::print(&grid);
         input::handle_input(&mut grid);
-        ia::play(&mut grid);
+        if game::finished(&grid.grid).is_some() {
+            break;
+        }
+        ai::play(&mut grid);
     }
 
     grid.cursor = (3, 3); // hack to hide the cursor
@@ -19,6 +22,7 @@ fn main() {
     match game::finished(&grid.grid) {
         Some(grid::Cell::O) => println!("Victory"),
         Some(grid::Cell::X) => println!(":("),
+        Some(grid::Cell::Empty) => println!("Ex aequo"),
         _ => println!("wtf"),
     }
 }
