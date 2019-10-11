@@ -7,11 +7,11 @@ pub fn print(grid: &crate::grid::Grid) {
     for (y, line) in grid.grid.iter().enumerate() {
         for (x, cell) in line.iter().enumerate() {
             let cell = match cell {
-                O => format!("{}O", color::Fg(color::Green)),
-                X => format!("{}X", color::Fg(color::Red)),
+                O => format!("{}O{}", color::Fg(color::Green), color::Fg(color::Reset)),
+                X => format!("{}X{}", color::Fg(color::Red), color::Fg(color::Reset)),
                 Empty => String::from(" "),
             };
-            print!("{}|", color::Fg(color::Reset));
+            print!("|");
             if (x, y) == grid.cursor {
                 print!("{}", color::Bg(color::White));
             }
